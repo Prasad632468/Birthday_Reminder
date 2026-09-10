@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Birthday Reminder ❤️</title>
+    <title>For You ❤️</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,112 +17,302 @@
 
         body {
             min-height: 100vh;
+            min-height: 100dvh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
+            padding: 15px;
+
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1a001f, #4b0b45, #ff4f81);
+
+            background:
+                radial-gradient(circle at top,
+                #ffb6c9,
+                #ff6f91 45%,
+                #4a102d);
+
             color: white;
-            overflow: hidden;
+
+            overflow-x: hidden;
         }
 
-        .card {
-            width: 90%;
-            max-width: 600px;
-            padding: 40px 25px;
+
+        /* MAIN */
+
+        .wrapper {
+            width: 100%;
+            max-width: 480px;
+
             text-align: center;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .emoji {
-            font-size: 65px;
-            animation: heartbeat 1.3s infinite;
+
+        /* INTRO */
+
+        #intro {
+            animation: fadeIn 1s ease;
         }
 
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
+
+        .gift {
+            font-size: clamp(70px, 22vw, 110px);
+
+            animation:
+                bounce 1.5s infinite;
+
+            margin-bottom: 20px;
+        }
+
+
+        @keyframes bounce {
+
+            0%,100% {
+                transform: translateY(0);
             }
 
             50% {
-                transform: scale(1.2);
+                transform: translateY(-15px);
             }
         }
 
+
         h1 {
-            margin-top: 15px;
-            font-size: 35px;
+            font-size: clamp(28px, 8vw, 42px);
+
+            margin-bottom: 15px;
         }
 
-        .name {
-            color: #ffd1e0;
-        }
 
-        .typing {
-            margin: 20px 0;
-            font-size: 18px;
-            min-height: 50px;
+        .intro-text {
+            font-size: clamp(15px, 4.5vw, 18px);
+
             line-height: 1.6;
+
+            margin-bottom: 25px;
         }
 
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
 
-        .time-box {
-            min-width: 85px;
-            padding: 15px 10px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.15);
-        }
+        .open-btn {
 
-        .time-box span {
-            display: block;
-            font-size: 28px;
-            font-weight: bold;
-        }
+            width: 90%;
+            max-width: 280px;
 
-        .time-box small {
-            font-size: 12px;
-        }
+            padding: 15px;
 
-        button {
-            margin-top: 20px;
-            padding: 14px 30px;
             border: none;
-            border-radius: 30px;
+
+            border-radius: 50px;
+
             background: white;
-            color: #e63872;
-            font-size: 16px;
+
+            color: #e83e70;
+
+            font-size: 17px;
+
             font-weight: bold;
+
             cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.25);
+
             transition: 0.3s;
         }
 
-        button:hover {
-            transform: scale(1.08);
+
+        .open-btn:active {
+            transform: scale(0.95);
         }
 
-        #wish {
+
+        /* SURPRISE */
+
+        #surprise {
             display: none;
-            margin-top: 25px;
-            font-size: 18px;
-            line-height: 1.7;
-            animation: appear 1s ease;
+
+            width: 100%;
+
+            animation:
+                fadeIn 1s ease;
         }
 
-        @keyframes appear {
+
+        .card {
+
+            width: 100%;
+
+            padding: 28px 20px;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            border:
+                1px solid rgba(255,255,255,0.3);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.3);
+        }
+
+
+        .cake {
+            font-size: clamp(55px, 18vw, 80px);
+
+            margin-bottom: 10px;
+        }
+
+
+        .title {
+            font-size: clamp(27px, 8vw, 38px);
+
+            line-height: 1.2;
+
+            margin-bottom: 10px;
+        }
+
+
+        .name {
+            color: #fff0f5;
+        }
+
+
+        .message {
+
+            font-size: clamp(15px, 4.3vw, 18px);
+
+            line-height: 1.7;
+
+            margin: 15px 0;
+        }
+
+
+        /* COUNTDOWN */
+
+        .countdown {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 7px;
+
+            margin: 25px 0;
+        }
+
+
+        .time {
+
+            padding: 12px 4px;
+
+            background:
+                rgba(0,0,0,0.18);
+
+            border-radius: 13px;
+        }
+
+
+        .time strong {
+
+            display: block;
+
+            font-size:
+                clamp(21px, 7vw, 30px);
+        }
+
+
+        .time span {
+
+            font-size:
+                clamp(9px, 3vw, 12px);
+        }
+
+
+        /* LOVE LETTER */
+
+        .letter {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            line-height: 1.7;
+
+            font-size:
+                clamp(14px, 4vw, 17px);
+
+            text-align: left;
+
+            animation:
+                slideUp 0.8s ease;
+        }
+
+
+        .letter-title {
+
+            text-align: center;
+
+            font-size: 22px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .wish-btn {
+
+            margin-top: 15px;
+
+            padding: 13px 22px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background: #fff;
+
+            color: #e83e70;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* ANIMATIONS */
+
+        @keyframes fadeIn {
+
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        @keyframes slideUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
             }
 
             to {
@@ -129,293 +321,514 @@
             }
         }
 
+
+        /* FLOATING HEART */
+
         .heart {
-            position: absolute;
+
+            position: fixed;
+
             bottom: -30px;
-            animation: floatUp 6s linear forwards;
+
             pointer-events: none;
+
+            z-index: 1;
+
+            animation:
+                float 5s linear forwards;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0);
+
+        @keyframes float {
+
+            from {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
                 opacity: 1;
             }
 
-            100% {
-                transform: translateY(-110vh) rotate(360deg);
+            to {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
                 opacity: 0;
             }
         }
 
-        @media(max-width:500px) {
 
-            h1 {
-                font-size: 27px;
+        /* MOBILE */
+
+        @media(max-width:360px) {
+
+            body {
+                padding: 10px;
             }
 
-            .emoji {
-                font-size: 50px;
+            .card {
+                padding: 23px 14px;
             }
 
-            .time-box {
-                min-width: 70px;
+            .countdown {
+                gap: 4px;
+            }
+
+            .time {
+                padding: 10px 2px;
+            }
+
+            .letter {
+                padding: 14px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <div class="card">
 
-        <div class="emoji">🎂❤️</div>
-
-        <!-- CHANGE HER NAME HERE -->
-        <h1>
-            Birthday of
-            <span class="name">My Love ❤️</span>
-        </h1>
-
-        <p class="typing" id="typing"></p>
+<div class="wrapper">
 
 
-        <!-- COUNTDOWN -->
+    <!-- ==================================
+         FIRST SCREEN
+         ================================== -->
 
-        <div class="countdown">
+    <div id="intro">
 
-            <div class="time-box">
-                <span id="days">00</span>
-                <small>Days</small>
-            </div>
-
-            <div class="time-box">
-                <span id="hours">00</span>
-                <small>Hours</small>
-            </div>
-
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <small>Minutes</small>
-            </div>
-
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <small>Seconds</small>
-            </div>
-
+        <div class="gift">
+            🎁
         </div>
 
+        <h1>
+            I Have Something For You ❤️
+        </h1>
 
-        <p>
-            ⏳ Just a little reminder...
+        <p class="intro-text">
+
+            It's not a normal gift...
+
             <br>
-            Your special day is getting closer! 💕
+
+            It's a little surprise
+            from someone who loves seeing
+            you smile. 
+
         </p>
 
+        <button
+            class="open-btn"
+            onclick="openSurprise()">
 
-        <button onclick="showWish()">
-            💌 Open My Wish
+            💌 Open Your Surprise
+
         </button>
 
+    </div>
 
-        <div id="wish">
 
-            🎉 <b>Happy Birthday in Advance, My Love! ❤️</b> 🎉
 
-            <br><br>
+    <!-- ==================================
+         SURPRISE SCREEN
+         ================================== -->
 
-            You are one of the most beautiful parts of my life. ❤️
+    <div id="surprise">
 
-            <br>
+        <div class="card">
 
-            Your smile can make my worst day better,
-            and having you in my life is something
-            I'll always be thankful for.
+            <div class="cake">
+                🎂
+            </div>
 
-            <br><br>
 
-            I hope your birthday brings you
-            unlimited happiness, beautiful memories,
-            and everything your heart wishes for. ✨
+            <!-- CHANGE NAME -->
 
-            <br><br>
+            <h1 class="title">
 
-            No matter how many birthdays come,
-            I hope I get to celebrate many of them
-            with you. ❤️
+                Happy Birthday
 
-            <br><br>
+                <div class="name">
+                    My Love ❤️
+                </div>
 
-            <b>
-                Stay happy. Stay beautiful.
-                And always keep smiling. ❤️🎂
-            </b>
+            </h1>
+
+
+            <p class="message">
+
+                Your special day is coming! ✨
+
+                <br>
+
+                And someone is counting
+                every second for it... ❤️
+
+            </p>
+
+
+            <!-- COUNTDOWN -->
+
+            <div class="countdown">
+
+                <div class="time">
+
+                    <strong id="days">
+                        00
+                    </strong>
+
+                    <span>
+                        DAYS
+                    </span>
+
+                </div>
+
+
+                <div class="time">
+
+                    <strong id="hours">
+                        00
+                    </strong>
+
+                    <span>
+                        HOURS
+                    </span>
+
+                </div>
+
+
+                <div class="time">
+
+                    <strong id="minutes">
+                        00
+                    </strong>
+
+                    <span>
+                        MINUTES
+                    </span>
+
+                </div>
+
+
+                <div class="time">
+
+                    <strong id="seconds">
+                        00
+                    </strong>
+
+                    <span>
+                        SECONDS
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p>
+
+                ⏰ The countdown has started...
+
+            </p>
+
+
+            <button
+                class="wish-btn"
+                onclick="openLetter()">
+
+                💖 Read My Message
+
+            </button>
+
+
+            <!-- LOVE LETTER -->
+
+            <div
+                class="letter"
+                id="letter">
+
+                <div class="letter-title">
+                    💌 A Little Message For You
+                </div>
+
+
+                Hey beautiful ❤️,
+
+                <br><br>
+
+                I just want you to know how
+                special you are to me.
+
+                <br><br>
+
+                Your smile, your little habits,
+                your cute anger and even your
+                silly moments...
+
+                I love all of them. ❤️
+
+                <br><br>
+
+                I hope this new year of your life
+                gives you lots of happiness,
+                success, peace and beautiful
+                memories.
+
+                <br><br>
+
+                And selfishly...
+
+                <br>
+
+                I hope I get to be part of
+                many of those memories.
+
+                <br><br>
+
+                Keep smiling,
+                keep shining,
+                and never forget that
+                someone is always cheering
+                for you. ❤️
+
+                <br><br>
+
+                <div style="text-align:center">
+
+                    <b>
+                        Happy Birthday in Advance
+                        My Love! 🎂❤️
+                    </b>
+
+                    <br><br>
+
+                    Forever yours... 💕
+
+                </div>
+
+            </div>
+
 
         </div>
 
     </div>
 
-
-    <script>
-
-        /* =====================================
-           CHANGE BIRTHDAY DATE HERE
-           ===================================== */
-
-        const birthday =
-            new Date("November 25, 2026 00:00:00").getTime();
+</div>
 
 
-        /* =====================================
-           TYPING MESSAGE
-           ===================================== */
 
-        const text =
-            "Someone very special has a birthday coming soon... ❤️";
-
-        let index = 0;
-
-        function typingEffect() {
-
-            if (index < text.length) {
-
-                document.getElementById("typing")
-                    .innerHTML += text.charAt(index);
-
-                index++;
-
-                setTimeout(typingEffect, 60);
-            }
-        }
-
-        typingEffect();
+<script>
 
 
-        /* =====================================
-           COUNTDOWN
-           ===================================== */
+    /* ======================================
+       🎂 CHANGE HER BIRTHDAY HERE
+       ====================================== */
 
-        const timer = setInterval(function() {
-
-            const now = new Date().getTime();
-
-            const difference = birthday - now;
-
-
-            if (difference <= 0) {
-
-                clearInterval(timer);
-
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-
-                document.getElementById("typing").innerHTML =
-                    "🎉 Today is your special day! Happy Birthday! ❤️";
-
-                createHearts();
-
-                return;
-            }
+    const birthday =
+        new Date(
+            "November 25, 2026 00:00:00"
+        ).getTime();
 
 
-            const days =
-                Math.floor(
-                    difference /
-                    (1000 * 60 * 60 * 24)
-                );
+
+    /* ======================================
+       OPEN SURPRISE
+       ====================================== */
+
+    function openSurprise() {
+
+        document.getElementById("intro")
+            .style.display = "none";
+
+        document.getElementById("surprise")
+            .style.display = "block";
+
+        createHearts();
+
+    }
 
 
-            const hours =
-                Math.floor(
-                    (difference %
-                    (1000 * 60 * 60 * 24)) /
-                    (1000 * 60 * 60)
-                );
+
+    /* ======================================
+       COUNTDOWN
+       ====================================== */
+
+    function updateCountdown() {
+
+        const now =
+            new Date().getTime();
+
+        const difference =
+            birthday - now;
 
 
-            const minutes =
-                Math.floor(
-                    (difference %
-                    (1000 * 60 * 60)) /
-                    (1000 * 60)
-                );
-
-
-            const seconds =
-                Math.floor(
-                    (difference %
-                    (1000 * 60)) /
-                    1000
-                );
-
+        if (difference <= 0) {
 
             document.getElementById("days")
-                .innerHTML = days;
+                .innerHTML = "00";
 
             document.getElementById("hours")
-                .innerHTML = hours;
+                .innerHTML = "00";
 
             document.getElementById("minutes")
-                .innerHTML = minutes;
+                .innerHTML = "00";
 
             document.getElementById("seconds")
-                .innerHTML = seconds;
+                .innerHTML = "00";
 
-        }, 1000);
-
-
-        /* =====================================
-           SURPRISE WISH
-           ===================================== */
-
-        function showWish() {
-
-            document.getElementById("wish")
-                .style.display = "block";
-
-            createHearts();
+            return;
         }
 
 
-        /* =====================================
-           FLOATING HEARTS
-           ===================================== */
-
-        function createHearts() {
-
-            for(let i = 0; i < 30; i++) {
-
-                const heart =
-                    document.createElement("div");
-
-                heart.className = "heart";
-
-                heart.innerHTML =
-                    ["❤️","💕","💖","💗","💓","💘"]
-                    [Math.floor(Math.random() * 6)];
-
-                heart.style.left =
-                    Math.random() * 100 + "vw";
-
-                heart.style.fontSize =
-                    (15 + Math.random() * 30) + "px";
-
-                heart.style.animationDuration =
-                    (3 + Math.random() * 4) + "s";
-
-                document.body.appendChild(heart);
+        const days =
+            Math.floor(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
 
 
-                setTimeout(() => {
-                    heart.remove();
-                }, 7000);
-            }
+        const hours =
+            Math.floor(
+                (difference %
+                (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+
+        const minutes =
+            Math.floor(
+                (difference %
+                (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+
+        const seconds =
+            Math.floor(
+                (difference %
+                (1000 * 60)) /
+                1000
+            );
+
+
+        document.getElementById("days")
+            .innerHTML =
+            String(days).padStart(2,"0");
+
+
+        document.getElementById("hours")
+            .innerHTML =
+            String(hours).padStart(2,"0");
+
+
+        document.getElementById("minutes")
+            .innerHTML =
+            String(minutes).padStart(2,"0");
+
+
+        document.getElementById("seconds")
+            .innerHTML =
+            String(seconds).padStart(2,"0");
+
+    }
+
+
+    updateCountdown();
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+
+
+    /* ======================================
+       LOVE LETTER
+       ====================================== */
+
+    function openLetter() {
+
+        document.getElementById("letter")
+            .style.display = "block";
+
+        createHearts();
+
+    }
+
+
+
+    /* ======================================
+       FLOATING HEARTS
+       ====================================== */
+
+    function createHearts() {
+
+        const emojis = [
+            "❤️",
+            "💕",
+            "💖",
+            "💗",
+            "💓",
+            "💘",
+            "🥰"
+        ];
+
+
+        for(let i = 0; i < 25; i++) {
+
+            const heart =
+                document.createElement("div");
+
+
+            heart.className = "heart";
+
+
+            heart.innerHTML =
+                emojis[
+                    Math.floor(
+                        Math.random() *
+                        emojis.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+
+            heart.style.fontSize =
+                (15 +
+                Math.random() * 25) +
+                "px";
+
+
+            heart.style.animationDuration =
+                (3 +
+                Math.random() * 3) +
+                "s";
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 6000);
+
         }
 
-    </script>
+    }
+
+</script>
+
 
 </body>
 </html>
+
