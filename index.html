@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Reminder ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a001f, #4b0b45, #ff4f81);
+            color: white;
+            overflow: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 600px;
+            padding: 40px 25px;
+            text-align: center;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .emoji {
+            font-size: 65px;
+            animation: heartbeat 1.3s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            margin-top: 15px;
+            font-size: 35px;
+        }
+
+        .name {
+            color: #ffd1e0;
+        }
+
+        .typing {
+            margin: 20px 0;
+            font-size: 18px;
+            min-height: 50px;
+            line-height: 1.6;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            min-width: 85px;
+            padding: 15px 10px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .time-box small {
+            font-size: 12px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #e63872;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+        #wish {
+            display: none;
+            margin-top: 25px;
+            font-size: 18px;
+            line-height: 1.7;
+            animation: appear 1s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -30px;
+            animation: floatUp 6s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media(max-width:500px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .emoji {
+                font-size: 50px;
+            }
+
+            .time-box {
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="emoji">🎂❤️</div>
+
+        <!-- CHANGE HER NAME HERE -->
+        <h1>
+            Birthday of
+            <span class="name">My Love ❤️</span>
+        </h1>
+
+        <p class="typing" id="typing"></p>
+
+
+        <!-- COUNTDOWN -->
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+
+        <p>
+            ⏳ Just a little reminder...
+            <br>
+            Your special day is getting closer! 💕
+        </p>
+
+
+        <button onclick="showWish()">
+            💌 Open My Wish
+        </button>
+
+
+        <div id="wish">
+
+            🎉 <b>Happy Birthday in Advance, My Love! ❤️</b> 🎉
+
+            <br><br>
+
+            You are one of the most beautiful parts of my life. ❤️
+
+            <br>
+
+            Your smile can make my worst day better,
+            and having you in my life is something
+            I'll always be thankful for.
+
+            <br><br>
+
+            I hope your birthday brings you
+            unlimited happiness, beautiful memories,
+            and everything your heart wishes for. ✨
+
+            <br><br>
+
+            No matter how many birthdays come,
+            I hope I get to celebrate many of them
+            with you. ❤️
+
+            <br><br>
+
+            <b>
+                Stay happy. Stay beautiful.
+                And always keep smiling. ❤️🎂
+            </b>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =====================================
+           CHANGE BIRTHDAY DATE HERE
+           ===================================== */
+
+        const birthday =
+            new Date("November 25, 2026 00:00:00").getTime();
+
+
+        /* =====================================
+           TYPING MESSAGE
+           ===================================== */
+
+        const text =
+            "Someone very special has a birthday coming soon... ❤️";
+
+        let index = 0;
+
+        function typingEffect() {
+
+            if (index < text.length) {
+
+                document.getElementById("typing")
+                    .innerHTML += text.charAt(index);
+
+                index++;
+
+                setTimeout(typingEffect, 60);
+            }
+        }
+
+        typingEffect();
+
+
+        /* =====================================
+           COUNTDOWN
+           ===================================== */
+
+        const timer = setInterval(function() {
+
+            const now = new Date().getTime();
+
+            const difference = birthday - now;
+
+
+            if (difference <= 0) {
+
+                clearInterval(timer);
+
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+
+                document.getElementById("typing").innerHTML =
+                    "🎉 Today is your special day! Happy Birthday! ❤️";
+
+                createHearts();
+
+                return;
+            }
+
+
+            const days =
+                Math.floor(
+                    difference /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            const hours =
+                Math.floor(
+                    (difference %
+                    (1000 * 60 * 60 * 24)) /
+                    (1000 * 60 * 60)
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (difference %
+                    (1000 * 60 * 60)) /
+                    (1000 * 60)
+                );
+
+
+            const seconds =
+                Math.floor(
+                    (difference %
+                    (1000 * 60)) /
+                    1000
+                );
+
+
+            document.getElementById("days")
+                .innerHTML = days;
+
+            document.getElementById("hours")
+                .innerHTML = hours;
+
+            document.getElementById("minutes")
+                .innerHTML = minutes;
+
+            document.getElementById("seconds")
+                .innerHTML = seconds;
+
+        }, 1000);
+
+
+        /* =====================================
+           SURPRISE WISH
+           ===================================== */
+
+        function showWish() {
+
+            document.getElementById("wish")
+                .style.display = "block";
+
+            createHearts();
+        }
+
+
+        /* =====================================
+           FLOATING HEARTS
+           ===================================== */
+
+        function createHearts() {
+
+            for(let i = 0; i < 30; i++) {
+
+                const heart =
+                    document.createElement("div");
+
+                heart.className = "heart";
+
+                heart.innerHTML =
+                    ["❤️","💕","💖","💗","💓","💘"]
+                    [Math.floor(Math.random() * 6)];
+
+                heart.style.left =
+                    Math.random() * 100 + "vw";
+
+                heart.style.fontSize =
+                    (15 + Math.random() * 30) + "px";
+
+                heart.style.animationDuration =
+                    (3 + Math.random() * 4) + "s";
+
+                document.body.appendChild(heart);
+
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 7000);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
